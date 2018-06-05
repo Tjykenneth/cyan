@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Example 3</title>
+        <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                $.ajax({
+                    type: "GET",
+                    url: "http://localhost/C273Webservices/getStudentsByModule.php",
+                    data: "module_code=c207",
+                    cache: false,
+                    dataType: "JSON",
+                    success: function (response) {
+                        for (i = 0; i < response.length; i++) {
+                            $("#studentTable").append(
+                                    "<tr><td>" + response[i].student_id + "</td>"
+                                    + "<td>" + response[i].class + "</td>"
+                                    + "<td>" + response[i].first_name + "</td>"
+                                    + "<td>" + response[i].last_name + "</td></tr>");
+                        }
+                    },
+                    error: function (obj, textStatus, errorThrown) {
+                        console.log("Error " + textStatus + ": " + errorThrown);
+                    }
+                });
+
+            });
+        </script>
+    </head>
+    <body>
+        <table border="1" id="studentTable">
+        </table>
+
+    </body>
+</html>

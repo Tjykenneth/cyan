@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Example 1</title>
+        <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+
+        <script>
+            $(document).ready(function() {
+				$.ajax({
+                    type: "GET",
+                    url: "http://localhost/C273Webservices/getColour.php",
+                    cache: false, 
+                    dataType: "JSON",
+                    success: function(data, textStatus) {
+                        $('#container').html(data.colour);
+                    },
+                    error: function(obj, textStatus, errorThrown) {
+                        console.log("Error "+textStatus+": "+errorThrown);
+                    }
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div id="container">Default text in container</div>
+    </body>
+</html>
